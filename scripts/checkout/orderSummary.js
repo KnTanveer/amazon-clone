@@ -134,6 +134,7 @@ import { renderPaymentSummary } from "./paymentSummary.js";
                 document.querySelector(`.quantity-label-${productId}`).innerHTML = newQuantity   
 
                 updateCartQuantity();
+                renderPaymentSummary();
         });
     });
 
