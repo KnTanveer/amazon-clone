@@ -109,11 +109,16 @@ import { renderPaymentSummary } from "./paymentSummary.js";
         link.addEventListener('click', () => {
             const productId = link.dataset.productId;
 
+            const cartItem = cart.find(item => item.productId === productId);
+            const input = document.querySelector(`.quantity-input-${productId}`);
+
+            input.value = cartItem.quantity;             
+            /*
             cart.forEach((cartItem) => {
                 if (productId === cartItem.productId) {
                     document.querySelector(`.quantity-input-${productId}`).textContent = cartItem.quantity;
                 }
-            })
+            }) */
             document.querySelector(`.cart-item-container-${productId}`).classList.add('is-editing-quantity');
         })
     })
@@ -121,17 +126,16 @@ import { renderPaymentSummary } from "./paymentSummary.js";
     document.querySelectorAll('.save-quantity-link').forEach((link) => {
         link.addEventListener('click', () => {
             const productId = link.dataset.productId;
-            
-            const newQuantity = Number(document.querySelector(`.quantity-input-${productId}`).value); 
-            document.querySelector(`.quantity-input-${productId}`).textContent = newQuantity;
+            const input = document.querySelector(`.quantity-input-${productId}`);
+            const newQuantity = Number(input.value);
             
             if (newQuantity < 1 || newQuantity >= 1000) {
                 alert('Product must be at least 1 and less than 1000');
                 return
             } 
                 updateQuantity(productId, newQuantity);
-                document.querySelector(`.cart-item-container-${productId}`).classList.remove('is-editing-quantity')
                 document.querySelector(`.quantity-label-${productId}`).innerHTML = newQuantity   
+                document.querySelector(`.cart-item-container-${productId}`).classList.remove('is-editing-quantity')
 
                 updateCartQuantity();
                 renderPaymentSummary();
