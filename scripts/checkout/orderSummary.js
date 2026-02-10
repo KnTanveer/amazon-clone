@@ -113,12 +113,6 @@ import { renderPaymentSummary } from "./paymentSummary.js";
             const input = document.querySelector(`.quantity-input-${productId}`);
 
             input.value = cartItem.quantity;             
-            /*
-            cart.forEach((cartItem) => {
-                if (productId === cartItem.productId) {
-                    document.querySelector(`.quantity-input-${productId}`).textContent = cartItem.quantity;
-                }
-            }) */
             document.querySelector(`.cart-item-container-${productId}`).classList.add('is-editing-quantity');
         })
     })
