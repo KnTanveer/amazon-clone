@@ -43,7 +43,7 @@ import { renderPaymentSummary } from "./paymentSummary.js";
                     <span class="save-quantity-link link-primary" data-product-id="${matchingProduct.id}">
                     Save
                     </span>
-                    <span class="delete-quantity-link link-primary" data-product-id="${matchingProduct.id}">
+                    <span class="delete-quantity-link link-primary delete-link-${matchingProduct.id}" data-product-id="${matchingProduct.id}">
                     Delete
                     </span>
                 </div>
