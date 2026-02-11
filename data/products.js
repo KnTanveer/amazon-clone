@@ -40,6 +40,7 @@ class Product {
   }
 }
 
+/*
 class Clothing extends Product{
   sizeChartLink;
 
@@ -69,7 +70,25 @@ class Appliance extends Product {
     `
   }
 }
+*/  
 
+export let products = [];
+
+export function loadProducts(render) {
+  const xhr = new XMLHttpRequest();
+
+  xhr.addEventListener('load', () => {
+    products = JSON.parse(xhr.response).map((productDetails) => {
+      return new Product(productDetails);   
+  });
+    render();
+  })
+  xhr.open('GET', 'https://supersimplebackend.dev/products');
+  xhr.send();
+}
+loadProducts()
+
+/*
 export const products = [
   {
     id: "e43638ce-6aa0-4b85-b27f-e1d07eb678c6",
@@ -746,3 +765,4 @@ export const products = [
 
   return new Product(productDetails); 
 });
+*/
